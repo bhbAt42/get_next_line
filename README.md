@@ -1,64 +1,96 @@
+# get_next_line
+
+## 🎯 Project Overview
+
+`get_next_line` is a function developed as part of the 42 school curriculum, designed to read a line ending with a newline character from a file descriptor. This project is crucial for understanding file handling, dynamic memory allocation, and string manipulation in C.
+
+## 📌 Features
+
+- Reads a single line from a file descriptor
+- Handles multiple file descriptors simultaneously
+- Manages different buffer sizes
+- Works with standard input, files, and other file descriptors
+- Memory efficient with dynamic allocation
+
+## 🛠 Function Prototype
+
+```c
+char *get_next_line(int fd);
 ```
 
-Get Next Line
-This project is part of the 42 school curriculum, aimed at enhancing your understanding of file handling and reading in C. get_next_line is a function that reads a line from a file descriptor and returns it. Successive calls to this function should allow you to read the entire content of a file, one line at a time.
+### Parameters
+- `fd`: File descriptor to read from
 
-Table of Contents
-Installation
+### Return Values
+- Returns a line read from the file descriptor
+- Returns `NULL` when there is nothing left to read or an error occurs
 
-Usage
+## 🧠 Key Concepts
 
-Function Prototype
+- Static variables
+- Dynamic memory allocation
+- File descriptor reading
+- Buffer management
+- Memory leaks prevention
 
-Project Rules
+## 🚀 Compilation
 
-License
+To compile the project, use the following flags:
 
-Installation
-To clone and compile the project, follow these steps:
-
-sh
-git clone https://github.com/yourusername/get_next_line.git
-cd get_next_line
-make
-Usage
-To use the get_next_line function in your own projects, include the following header file in your C source files:
-
-c
-#include "get_next_line.h"
-Then, compile your project with the get_next_line.a file generated during the installation:
-
-sh
-gcc -L. -lgnl yourfile.c -o yourprogram
-Function Prototype
-c
-char \*get_next_line(int fd);
-Parameters:
-
-fd: The file descriptor to read from.
-
-Return value:
-
-The content of the read line, or NULL if there's nothing more to read or an error occurs.
-
-Project Rules
-Your project must be written in C.
-
-Your project must adhere to the Norm. If you have bonus files/functions, they are included in the norm check.
-
-Your functions should not quit unexpectedly (segmentation fault, bus error, double free, etc.), except in the case of undefined behavior.
-
-All heap-allocated memory space must be properly freed when necessary. No leaks will be tolerated.
-
-You must submit a Makefile that will compile your source files. The Makefile should include the flags -Wall, -Wextra, and -Werror and must not relink.
-
-Your Makefile must contain the rules $(NAME), all, clean, fclean, and re.
-
-To submit bonuses, you must include a bonus rule in your Makefile that adds the various headers, libraries, or functions that are forbidden in the main part of the project. Bonuses must be in a different file \_bonus.{c/h}.
-
-If the project allows using your libft, you must copy its sources and Makefile into a libft folder. Your project’s Makefile must compile the library using its Makefile, then compile the project.
-
-You are encouraged to create test programs for your project. They won't be submitted or graded but will help you test your work and your peers’ work.
-
-Submit your work to the assigned git repository. Only work in the git repository will be graded.
+```bash
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
 ```
+
+## 📦 Bonus Features
+
+If implemented, bonus features might include:
+- Handling multiple file descriptors
+- Efficient memory management
+- Minimal memory allocation
+
+## 🔍 Usage Example
+
+```c
+int fd = open("example.txt", O_RDONLY);
+char *line;
+
+while ((line = get_next_line(fd)) != NULL) {
+    printf("%s", line);
+    free(line);
+}
+close(fd);
+```
+
+## ⚠️ Potential Challenges
+
+- Handling different buffer sizes
+- Managing static variables
+- Preventing memory leaks
+- Efficiently splitting lines
+
+## 🏆 Learning Objectives
+
+- Understand file reading mechanisms
+- Practice dynamic memory management
+- Improve string manipulation skills
+- Learn about file descriptors and system calls
+
+## 📝 Notes
+
+- Ensure proper memory management
+- Test with various buffer sizes
+- Handle edge cases (empty files, large lines)
+
+## 📊 Project Status
+
+- Completed ✅
+- Norminette compliant 📋
+- Passes all mandatory tests 🧪
+
+## 🤝 Contributing
+
+Feel free to open issues or submit pull requests for improvements or bug fixes.
+
+## 📄 License
+
+This project is open-source. Please check the license file for details.
